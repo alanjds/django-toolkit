@@ -1,3 +1,7 @@
+# Release 0.3.3-loose-deps - Tue Mar 22 12:07:00 AEDT 2016
+
+- Specify requirements more loosely (`==` is inappropriate for a library).
+
 # Release 0.3.3 - Mon Jul 27 09:32:17 AEST 2015
 
 - Added extra_form_classes to generic form.

@@ -8,35 +8,15 @@ Index
 
 * :file:`requirements/default.txt`
 
-    Default requirements for Python 2.7+ with Django 1.8.
-    
-* :file:`requirements/default-django17.txt`
-
-    Default requirements for Python 2.7+ with Django 1.7.
-    
-* :file:`requirements/default-django16.txt`
-
-    Default requirements for Python 2.7+ with Django 1.6.
+    Default requirements for Python 2.7+ with Django 1.6-1.8.
 
 * :file:`requirements/test.txt`
 
     Requirements needed to run the full unittest suite via ./runtests.py
 
-* :file:`requirements/test-ci.txt`
-
-    Extra test requirements required by the CI suite (Tox).
-
-* :file:`requirements/doc.txt`
-
-    Extra requirements required to build the Sphinx documentation.
-
 * :file:`requirements/pkgutils.txt`
 
     Extra requirements required to perform package distribution maintenance.
-
-* :file:`requirements/dev.txt`
-
-    Requirement file installing the current master branch of Celery and deps.
 
 Examples
 ========
