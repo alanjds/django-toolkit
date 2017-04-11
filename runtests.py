@@ -16,6 +16,7 @@ if not settings.configured:
             'django_nose',
             'django_toolkit',
             'django_toolkit.tests.testapp',
+            'django_toolkit.tests.db',
         ],
         # Django replaces this, but it still wants it. *shrugs*
         DATABASE_ENGINE='django.db.backends.sqlite3',
