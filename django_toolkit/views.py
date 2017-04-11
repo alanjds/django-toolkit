@@ -4,7 +4,10 @@ import os
 import magic
 from django.views.generic import DeleteView
 from django.views.generic.base import View, RedirectView, ContextMixin
-from django.core.servers.basehttp import FileWrapper
+try:
+    from django.core.servers.basehttp import FileWrapper
+except ImportError:
+    from wsgiref.util import FileWrapper
 from django.http.response import HttpResponse
 from django.utils.encoding import smart_str
 from django.views.generic.detail import DetailView, SingleObjectMixin
@@ -14,7 +17,12 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django_toolkit.decorators import class_login_required
 from django.conf import settings
-from django.utils.importlib import import_module
+try:
+    # Django versions >= 1.9
+    from django.utils.module_loading import import_module
+except ImportError:
+    # Django versions < 1.9
+    from django.utils.importlib import import_module
 from django.core.serializers.json import DjangoJSONEncoder
 from django.views.generic.dates import YearMixin, MonthMixin, DayMixin,\
     _date_from_string
@@ -241,7 +249,7 @@ class AjaxMixin(object):
         return self.request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
     
     def accepts_json(self):
-        return 'json' in self.request.META.get('HTTP_ACCEPT', []) or self.request.REQUEST.get('json', False) != False
+        return 'json' in self.request.META.get('HTTP_ACCEPT', []) or self.request.GET.get('json', False) != False
     
     def render_to_response(self, context, **response_kwargs):
         """

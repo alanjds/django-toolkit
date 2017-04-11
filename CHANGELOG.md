@@ -1,6 +1,7 @@
-# Release 0.3.3-loose-deps - Tue Mar 22 12:07:00 AEDT 2016
+# Release 0.3.4 Tue Apr 11 17:20:01 BRT 2017
 
-- Specify requirements more loosely (`==` is inappropriate for a library).
+- Updated to work with Django 1.9
+  Merged "master" branch from @storerjeremy fork
 
 # Release 0.3.3 - Mon Jul 27 09:32:17 AEST 2015
 

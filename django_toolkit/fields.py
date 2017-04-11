@@ -101,8 +101,8 @@ class SeparatedValuesField(models.TextField):
 ##        defaults.update(kwargs)
 ##        return super(CommaSeparatedEmailField, self).formfield(**defaults)
 
-from south.modelsinspector import add_introspection_rules
-add_introspection_rules([], ["django_toolkit.fields.SeparatedValuesField"])
+#from south.modelsinspector import add_introspection_rules
+#add_introspection_rules([], ["django_toolkit.fields.SeparatedValuesField"])
 
 #class CommaSeparatedEmailField(EmailField):
 #    default_validators = [validators.validate_email]
