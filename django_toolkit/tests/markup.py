@@ -1,8 +1,11 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from django_toolkit.markup.html import get_anchor_href, get_anchor_contents
 
 
-class HtmlGetAnchorHrefTestCase(unittest.TestCase):
+class HtmlGetAnchorHrefTestCase(TestCase):
 
     def test_finds_single_href(self):
         self.assertEquals(
@@ -29,7 +32,7 @@ class HtmlGetAnchorHrefTestCase(unittest.TestCase):
         )
 
 
-class HtmlGetAnchorHtmlTestCase(unittest.TestCase):
+class HtmlGetAnchorHtmlTestCase(TestCase):
 
     def test_finds_single_href(self):
         self.assertEquals(

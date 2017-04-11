@@ -1,9 +1,12 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from django_toolkit.csv.unicode import UnicodeWriter, UnicodeReader, CastingUnicodeWriter
 from tempfile import NamedTemporaryFile
 
 
-class UnicodeWriterTestCase(unittest.TestCase):
+class UnicodeWriterTestCase(TestCase):
 
     def test_write(self):
         f = NamedTemporaryFile(mode='w+')
@@ -19,7 +22,7 @@ class UnicodeWriterTestCase(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-class CastingUnicodeWriterTestCase(unittest.TestCase):
+class CastingUnicodeWriterTestCase(TestCase):
  
     def test_write(self):
         f = NamedTemporaryFile(mode='w+')
@@ -35,7 +38,7 @@ class CastingUnicodeWriterTestCase(unittest.TestCase):
         self.assertEqual(actual, expected)
 
 
-class UnicodeReaderWriterTestCase(unittest.TestCase):
+class UnicodeReaderWriterTestCase(TestCase):
 
     def test_read(self):
         f = NamedTemporaryFile(mode='w+')

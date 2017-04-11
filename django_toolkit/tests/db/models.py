@@ -1,8 +1,11 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from django_toolkit.tests.testapp.models import ModelWithChainedQuerySet
 
 
-class QuerySetManagerTestCase(unittest.TestCase):
+class QuerySetManagerTestCase(TestCase):
 
     def test_chaining(self):
         ModelWithChainedQuerySet.objects.bulk_create([

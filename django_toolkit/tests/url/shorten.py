@@ -1,8 +1,11 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from django_toolkit.url.shorten import shorten_url, netloc_no_www
 
 
-class ShortenUrlTestCase(unittest.TestCase):
+class ShortenUrlTestCase(TestCase):
 
     @property
     def shorten_url(self):
@@ -65,7 +68,7 @@ class ShortenUrlTestCase(unittest.TestCase):
         self.assertEquals(self.shorten_url('http://www.example.com.au/au/page/n/', 24, strip_www=False, strip_path=False, ellipsis=True), u'www.example\u2026au/page/n/')
 
 
-class NetlocNoWwwTestCase(unittest.TestCase):
+class NetlocNoWwwTestCase(TestCase):
 
     @property
     def netloc_no_www(self):

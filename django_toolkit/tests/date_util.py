@@ -1,8 +1,11 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from datetime import datetime, date
 from django_toolkit.date_util import *
 
-class DateUtilTestCase(unittest.TestCase):
+class DateUtilTestCase(TestCase):
 
     def test_start_of_month(self):
         self.assertEqual(start_of_month(date(2012, 1, 15)), date(2012, 1, 1))
@@ -16,7 +19,7 @@ class DateUtilTestCase(unittest.TestCase):
     def test_start_of_next_month(self):
         self.assertEqual(start_of_month(date(2012, 1, 15), 0, 1), date(2012, 2, 1))
 
-class DatePeriodTestCase(unittest.TestCase):
+class DatePeriodTestCase(TestCase):
     
     def test_first_of_month(self):
         self.assertEqual(date_period(DATE_FREQUENCY_MONTHLY, 1, date(2012, 12, 1)), (date(2012, 12, 1), date(2012, 12, 31)))
@@ -42,7 +45,7 @@ class DatePeriodTestCase(unittest.TestCase):
     def test_strangeness(self):
         self.assertEqual(date_period(DATE_FREQUENCY_MONTHLY, 15, date(2012, 11, 10)), (date(2012, 10, 15), date(2012, 11, 14)))
 
-class BusinessDaysTestCase(unittest.TestCase):
+class BusinessDaysTestCase(TestCase):
 
     def test_business_days_working_week(self):
         self.assertEqual(business_days(date(2012, 11, 12), date(2012, 11, 16)), 5)
@@ -65,7 +68,7 @@ class BusinessDaysTestCase(unittest.TestCase):
     def test_business_days_two_days(self):
         self.assertEqual(business_days(date(2012, 12, 10), date(2012, 12, 11)), 2)
 
-class DaysTestCase(unittest.TestCase):
+class DaysTestCase(TestCase):
     
     def test_days_working_week(self):
         self.assertEqual(days(date(2012, 11, 12), date(2012, 11, 16)), 5)
@@ -88,7 +91,7 @@ class DaysTestCase(unittest.TestCase):
     def test_days_two_days(self):
         self.assertEqual(days(date(2012, 12, 10), date(2012, 12, 11)), 2)
 
-class DaysInMonthTestCase(unittest.TestCase):
+class DaysInMonthTestCase(TestCase):
     
     def test_feb_2011(self):
         self.assertEqual(days_in_month(date(2011, 2, 10)), 28)
@@ -99,7 +102,7 @@ class DaysInMonthTestCase(unittest.TestCase):
     def test_oct_2012(self):
         self.assertEqual(days_in_month(date(2012, 10, 31)), 31)
         
-class HelperGetAnniversaryPeriodsTestCase(unittest.TestCase):
+class HelperGetAnniversaryPeriodsTestCase(TestCase):
     
     def test_single_month(self):
         self.assertEqual(
@@ -151,7 +154,7 @@ class HelperGetAnniversaryPeriodsTestCase(unittest.TestCase):
             ]
         )
         
-class DateUtilNextDateTestCase(unittest.TestCase):
+class DateUtilNextDateTestCase(TestCase):
     
     def test_start_of_month(self):
         self.assertEqual(
@@ -159,7 +162,7 @@ class DateUtilNextDateTestCase(unittest.TestCase):
             date(2012, 11, 1)
         )
 
-class DateDayLastWeekTestCase(unittest.TestCase):
+class DateDayLastWeekTestCase(TestCase):
     
     def test_monday_last_week_mid_week(self):
         self.assertEqual(
@@ -179,7 +182,7 @@ class DateDayLastWeekTestCase(unittest.TestCase):
             date(2012, 12, 25)
         )
 
-class ExactAnniversariesTestCase(unittest.TestCase):
+class ExactAnniversariesTestCase(TestCase):
     
     def test_raises_on_invalid_frequency(self):
         self.assertRaises(DateFrequencyError, exact_anniversaries, 'weekly', 1, date(2012, 3, 1), date(2012, 4, 1))
@@ -226,7 +229,7 @@ class ExactAnniversariesTestCase(unittest.TestCase):
             3
         )
 
-class QuarterTestCase(unittest.TestCase):
+class QuarterTestCase(TestCase):
     
     def test_quarter_start_of_quarter(self):
         self.assertEquals(quarter(date(2013, 1, 1)), (date(2013, 1, 1), date(2013, 3, 31)))
@@ -239,7 +242,7 @@ class QuarterTestCase(unittest.TestCase):
     def test_quarter_end_of_quarter(self):
         self.assertEquals(quarter(date(2013, 3, 31)), (date(2013, 1, 1), date(2013, 3, 31)))
         
-class PreviousQuarterTestCase(unittest.TestCase):
+class PreviousQuarterTestCase(TestCase):
     
     def test_previous_quarter_start_of_quarter(self):
         self.assertEquals(previous_quarter(date(2013, 1, 1)), (date(2012, 10, 1), date(2012, 12, 31)))

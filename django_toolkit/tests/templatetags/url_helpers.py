@@ -1,4 +1,3 @@
-from django.utils import unittest
 from django_toolkit.tests.url.shorten import ShortenUrlTestCase, \
     NetlocNoWwwTestCase
 from django_toolkit.templatetags.url_helpers import shorten_url, netloc_no_www

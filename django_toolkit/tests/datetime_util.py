@@ -1,8 +1,11 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from datetime import datetime, date
 from django_toolkit.datetime_util import *
 
-class DateTimeUtilTestCase(unittest.TestCase):
+class DateTimeUtilTestCase(TestCase):
 
     def test_start_of_month(self):
         first_day = datetime(2012, 1, 1)
@@ -18,7 +21,7 @@ class DateTimeUtilTestCase(unittest.TestCase):
     def test_start_of_next_month(self):
         self.assertEqual(start_of_month(datetime(2012, 1, 15), 0, 1), datetime(2012, 2, 1))
 
-class BusinessDaysTestCase(unittest.TestCase):
+class BusinessDaysTestCase(TestCase):
 
     def test_business_days_accepts_datetime(self):
         """
@@ -26,7 +29,7 @@ class BusinessDaysTestCase(unittest.TestCase):
         """
         self.assertEqual(business_days(datetime(2012, 11, 12), datetime(2012, 11, 16)), 5)
         
-class QuarterTestCase(unittest.TestCase):
+class QuarterTestCase(TestCase):
     
     def test_quarter_start_of_quarter(self):
         self.assertEquals(quarter(datetime(2013, 1, 1)), (datetime(2013, 1, 1), datetime(2013, 3, 31)))
@@ -39,7 +42,7 @@ class QuarterTestCase(unittest.TestCase):
     def test_quarter_end_of_quarter(self):
         self.assertEquals(quarter(datetime(2013, 3, 31)), (datetime(2013, 1, 1), datetime(2013, 3, 31)))
         
-class PreviousQuarterTestCase(unittest.TestCase):
+class PreviousQuarterTestCase(TestCase):
     
     def test_previous_quarter_start_of_quarter(self):
         self.assertEquals(previous_quarter(datetime(2013, 1, 1)), (datetime(2012, 10, 1), datetime(2012, 12, 31)))

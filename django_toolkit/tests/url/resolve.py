@@ -1,4 +1,7 @@
-from django.utils import unittest
+try:
+    from django.utils.unittest import TestCase
+except ImportError:
+    from django.test import TestCase
 from django_toolkit.url.resolve import url_with_protocol, resolve_url, \
     DESKTOP_USER_AGENT, MOBILE_USER_AGENT
 from httmock import all_requests, HTTMock, response
@@ -14,7 +17,7 @@ def response_content(url, request):
         return {'status_code': 200}
 
 
-class UrlWithProtocolTestCases(unittest.TestCase):
+class UrlWithProtocolTestCases(TestCase):
 
     def test_url_with_protocol(self):
         url = 'example.com'
@@ -37,7 +40,7 @@ class UrlWithProtocolTestCases(unittest.TestCase):
         self.assertEquals(url, 'http://example.com/path.html')
 
 
-class ResolveUrlTestCases(unittest.TestCase):
+class ResolveUrlTestCases(TestCase):
 
     def test_resolve_url(self):
         with HTTMock(response_content):
